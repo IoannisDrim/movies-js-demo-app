@@ -6,7 +6,7 @@ import Page from './models/Page.js';
 import InTheatersPage from './pages/inTheatersPage/inTheatersPage.js'
 import SearchMoviesPage from './pages/searchMoviesPage/searchMoviesPage.js'
 
-const movieRamaApp = function() {
+const movieDemoApp = function() {
 
 	const movieService = new MovieAPI;
 	const appComponents = {
@@ -84,4 +84,4 @@ const movieRamaApp = function() {
 	
 }
 
-window.onload = new movieRamaApp().init();
+window.onload = new movieDemoApp().init();
