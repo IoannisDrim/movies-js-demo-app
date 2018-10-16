@@ -10,6 +10,11 @@ Prerequisites
 * E2E test is just for sample. It needs to be improved.
 * **Feel free to make any comments concerning the code. I want to become better!**
 
+### Upcoming tasks
+* Replace grunt with webpack
+* Add debounce / throttling
+* Add movie interface
+
 ### System requirements
 
 * ```node```   
