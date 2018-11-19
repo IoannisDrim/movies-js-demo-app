@@ -1,7 +1,9 @@
 ### Getting Started
 
 These instructions will guide you in how to install and run application, as well as how to run e2e testing
-Prerequisites
+Prerequisites.
+
+The aim of this application is to make everything happen by only using Vanilla JS and this is the why I am not using any other framework or library.
 
 ### Notes
 
@@ -12,8 +14,12 @@ Prerequisites
 
 ### Upcoming tasks
 * Replace grunt with webpack
-* Add debounce / throttling
-* Add movie interface
+* Add debounce / throttling when searching for movies
+* Add a movie interface
+* Find better way to access DOM because getElementById is expensive
+* Make app more responsive
+* Make more use of ES6
+* Re-examine the relation between the components and make some code more reusable
 
 ### System requirements
 
