@@ -41,7 +41,7 @@ A step by step installation process
    
 ### Running the unit tests
 
-App has a sample of e2e testing concerning the "In Theaters" page
+App has some samples of unit tests
 
 To run Jest unit test type in CMD
 
