@@ -1,7 +1,6 @@
 ### Getting Started
 
 These instructions will guide you in how to install and run application, as well as how to run unit tests
-Prerequisites.
 
 The aim of this application is to make everything happen by only using Vanilla JS and this is the why I am not using any other framework or library.
 
