@@ -1,0 +1,3 @@
+/src/app/sw.js
+/src/app/serviceworker-cache-polyfill.js
+jest.config.js

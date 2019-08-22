@@ -1,0 +1,72 @@
+header {
+	background-color: #081c24;
+	padding: 1rem;
+	flex: none;
+}
+
+header nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+header nav ul li{
+	display: inline;
+	margin: 0.5rem;
+	padding: 0;
+}
+
+header nav ul li a {
+	text-decoration: none;
+	font-size: 1.6rem;
+	color: #008080;
+}
+
+header nav ul li a:visited {
+	text-decoration: none;
+	color: #008080;
+}
+
+header nav ul li a:hover {
+	text-decoration: none;
+	color: #00997d;
+}
+
+header nav ul li a:active {
+	text-decoration: none;
+	color: #00997d;
+}
+
+.active-header-link {
+	text-decoration: none !important;
+	color: #ace600 !important;
+}
+
+#logo {
+	font-size: 4rem;
+	margin-right: 2rem;
+	color: #00cca7;
+}
+
+.navbar-toggler {
+    border-color: #008080;
+}
+
+.navbar-toggler-icon {
+	width: 2.5em;
+	height: 2.5em;
+  	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(172, 230, 0, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/*xs-screens*/
+@media only screen and (max-width: 576px) {
+	#logo {
+		font-size: 2rem;
+	}
+}
+
+/*sm-screens*/
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+	#logo {
+		font-size: 3rem;
+	}
+}

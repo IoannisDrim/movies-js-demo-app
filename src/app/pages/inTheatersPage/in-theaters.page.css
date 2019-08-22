@@ -1,0 +1,22 @@
+#inTheatersPage {
+	height: 100%;
+}
+
+#inTheatersPage section:not(:fisrt-child) {
+	height: 100%;
+}
+
+#inTheatersPage #moviesContainerComponent {
+	height: 92%;
+}
+
+#inTheatersPage section:first-child {
+	text-align: center;
+	padding: 1rem 0;
+	box-shadow: 0 1px 8px gray;
+}
+
+#inTheatersPage section:first-child h1 {
+	font-family: 'Dancing Script', cursive;
+	font-size: 3rem;
+}

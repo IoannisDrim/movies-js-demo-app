@@ -1,6 +1,6 @@
 ### Getting Started
 
-These instructions will guide you in how to install and run application, as well as how to run e2e testing
+These instructions will guide you in how to install and run application, as well as how to run unit tests
 Prerequisites.
 
 The aim of this application is to make everything happen by only using Vanilla JS and this is the why I am not using any other framework or library.
@@ -8,56 +8,58 @@ The aim of this application is to make everything happen by only using Vanilla J
 ### Notes
 
 * This app is only used for demonstration. Currently I am working to make this app better.
-* Grunt is used just for serving app by now. Soon it will be enriched and improved.
-* E2E test is just for sample. It needs to be improved.
+* Jest unit test are just for sample. They will be enriched.
 * **Feel free to make any comments concerning the code. I want to become better!**
 
 ### Upcoming tasks
-* Replace grunt with webpack
-* Add debounce / throttling when searching for movies
-* Add a movie interface
-* Find better way to access DOM because getElementById is expensive
-* Make app more responsive
-* Make more use of ES6
-* Re-examine the relation between the components and make some code more reusable
+* Improve UI
+* UI more responsive
+* Improve "expand to show more details" functionality
+* Do some more refactor to make code reusable in cases like MovieApiService
+* Using redux store
+* Add environmental files to load configuration for different instances
+* Make NavigationBarComponent more dynamic
+* Enable router to get dynamically which is the default route
+* Make loader a component, thus don't show it if no more pages are available
+* Add e2e tests
 
 ### System requirements
 
-* ```node```   
-* ```grunt-cli```   
+* ```node``` 
 
 ### Installing
 
 A step by step installation process
 
 * Clone remote repository to local PC   
-  ```git clone https://github.com/IoannisDrim/movies-js-demo-app.git```
+  ```git clone https://IoannisDrim@bitbucket.org/IoannisDrim/movie-rama.git```
 * Browse to root directory
 * Open a CMD
 * Type ```npm install``` to fetch project dependancies
-* Type ```grunt serve``` to launch project locally on port 9000
+* Type ```npm run server``` to launch project locally on port 8080
 
-*_Make sure that no other app is running in localhost:9000. If another app is running and you don't want to close it, then please open Gruntfile.js and find "connect" configuration. Then change port to whatever you want. Please take note that in this case, port should be also changed in cypress.json_     
+*_Make sure that no other app is running in localhost:8080.   
    
-### Running the tests
+### Running the unit tests
 
 App has a sample of e2e testing concerning the "In Theaters" page
 
-To run e2e test type in CMD
+To run Jest unit test type in CMD
 
-```npm run test-e2e```
-
-*```grunt serve```_should be running during tests_   
+```npm run test-unit``` 
 
 ### Technologie Used
 
 * HTML5
 * CSS3
 * Vanilla JS
-* Bootsrap 4
-* Grunt
-* JQuery ( **only** for supporting Bootsrap )
-* Cypress (e2e tests)
+* Bootsrap4
+* Webpack
+* ServiceWorker
+* Babel
+* ESLint
+* Jest
+* JQuery ( **only** for supporting Bootstrap )
 * Git
 
 ### Authors

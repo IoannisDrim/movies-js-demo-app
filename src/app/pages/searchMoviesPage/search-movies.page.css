@@ -1,0 +1,13 @@
+#searchMoviesPage {
+	height: 100%;
+}
+
+#searchMoviesPage section:not(:first-child) {
+	height: 100%;
+}
+
+#searchMoviesPage #moviesContainerComponent {
+	height: -moz-calc(100% - 12rem);
+  height: -webkit-calc(100% - 12rem);
+	height: calc(100% - 12rem);
+}

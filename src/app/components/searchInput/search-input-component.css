@@ -1,0 +1,18 @@
+#searchMovieInput {
+	width: 50%;
+	margin: 0 auto;
+	font-size: 2rem;
+	padding: 2rem;
+	line-height: 2rem;
+}
+
+#searchMovieInputSection:first-child {
+	text-align: center;
+	padding: 1.5rem 0;
+	box-shadow: 0 1px 8px gray;
+}
+
+#searchMovieInputSection:first-child h1 {
+	font-family: 'Dancing Script', cursive;
+	font-size: 3rem;
+}
