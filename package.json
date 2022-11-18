@@ -32,7 +32,7 @@
     "mini-css-extract-plugin": "^0.8.0",
     "style-loader": "*",
     "webpack": "^4.36.1",
-    "webpack-cli": "^3.3.6",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "latest"
   }
 }
