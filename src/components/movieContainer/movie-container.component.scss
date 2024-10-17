@@ -1,0 +1,32 @@
+.scroll-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  scroll-behavior: smooth;
+
+  &__no-results-section {
+    font-size: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: gray;
+  }
+
+  &__review-div {
+    margin-bottom: 1rem;
+
+    &__auth {
+      font-weight: bold;
+      display: inline !important;
+    }
+
+    &__content {
+      display: inline;
+      text-align: justify;
+    }
+  }
+}
