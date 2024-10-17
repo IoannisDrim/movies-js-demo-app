@@ -1,0 +1,23 @@
+.search-movie-section {
+  font-family: 'Dancing Script', cursive;
+  font-size: 16px;
+  text-align: center;
+  //box-shadow: 0 1px 8px -2px gray;
+  padding: 1rem 0;
+
+  &__input {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 16px;
+    padding: 1rem;
+    line-height: 2rem;
+  }
+
+  &__title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0 1px 8px gray;
+    padding: 16px 0;
+  }
+}

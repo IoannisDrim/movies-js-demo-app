@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationBarComponent should render correctly 1`] = `
+"<nav id="headerNav" class="navbar">
+  <span id="logo" class="navbar__logo">
+    MovieRama
+    <img src="[object Object]" width="40" alt="movieRamaLogo">
+  </span>
+  <div class="navbar__menu-list">
+    <ul class="navbar__menu-list__items">
+      <li><a href="#in-theaters">Now in Theaters</a></li>
+      <li><a href="#search-movies">Movies Search</a></li>
+    </ul>
+  </div>
+</nav>
+"
+`;

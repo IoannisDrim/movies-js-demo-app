@@ -1,0 +1,46 @@
+<div id="card_${movie.id}" class="movie-card card">
+<!--  <div class="movie-card__header">-->
+<!--    <h3 class="card__title">${movie.title}</h3>-->
+<!--    <div class="movie-card__header__rating">-->
+<!--      <span id="card_rate_${movie.id}"></span>-->
+<!--      <strong>${movie.vote_average}</strong>-->
+<!--    </div>-->
+<!--  </div>-->
+  <img class="card__image" src="https://image.tmdb.org/t/p/w300/${movie.poster_path}" alt="${movie.title}_img">
+  <div class="card__body">
+    <div>
+      <h5>Genres</h5>
+      <div class="movie-card__genre-info">${movie.genres.join('')}</div>
+    </div>
+    <div>
+      <div style="display: flex; justify-content: space-between">
+        <h5>Overview</h5>
+        <div class="movie-card__header__rating">
+          <span id="card_rate_${movie.id}"></span>
+          <strong>${movie.vote_average}</strong>
+        </div>
+      </div>
+      <p id="cardOverview_${movie.id}" class="card__text card__overview">${movie.overview}</p>
+    </div>
+    <div id="expand_${movie.id}" class="hidden">
+      <div id="moreInfo_${movie.id}" data-wrapper="measuringWrapper_${movie.id}">
+        <div id="trailer_${movie.id}"></div>
+        <div id="reviews_${movie.id}"></div>
+        <div id="similar_movies_${movie.id}"></div>
+      </div>
+    </div>
+  </div>
+  <div id="cardFooter_${movie.id}" class="card__footer">
+    <button
+      id="showMoreButton_${movie.id}"
+      class="button movie-card__show-more-btn"
+    >
+      <span id="showMoreButtonText_${movie.id}">Show more</span>
+      <div id="showMoreLoader_${movie.id}" class="bouncer hidden">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </button>
+  </div>
+</div>
