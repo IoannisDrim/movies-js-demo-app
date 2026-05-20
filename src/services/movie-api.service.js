@@ -6,27 +6,15 @@ export default class MovieAPIService {
     this.apiKey = process.env.MOVIES_API_KEY;
     this.endpoints = {
       getNowPlaying: 'movie/now_playing',
-      getGenres: 'genre/movie/list',
       getMovieTrailer: 'movie/{movie_id}/videos',
       getMovieReviews: 'movie/{movie_id}/reviews',
       getSimilarMovies: 'movie/{movie_id}/similar',
-      searchMovie: 'search/movie',
     };
     this.serviceHelper = new ServiceHelper();
   }
 
   getNowPlaying(page) {
     const serviceURL = `${this.url}${this.endpoints.getNowPlaying}?api_key=${this.apiKey}&page=${page}`;
-    return this.serviceHelper.returnPromise('GET', serviceURL);
-  }
-
-  searchMovie(term, page = 1) {
-    const serviceURL = `${this.url}${this.endpoints.searchMovie}?api_key=${this.apiKey}&page=${page}&query=${encodeURI(term)}`;
-    return this.serviceHelper.returnPromise('GET', serviceURL);
-  }
-
-  getMovieGenres() {
-    const serviceURL = `${this.url}${this.endpoints.getGenres}?api_key=${this.apiKey}`;
     return this.serviceHelper.returnPromise('GET', serviceURL);
   }
 

@@ -15,18 +15,78 @@
     justify-content: center;
     color: gray;
   }
+}
 
-  &__review-div {
-    margin-bottom: 1rem;
+.skeleton-card {
+  margin: 1.5rem 1rem;
+  width: 25rem;
+  height: 500px;
+  border-radius: 6px;
+  align-self: flex-start;
+  overflow: hidden;
+  background-color: #132e3e;
+  position: relative;
 
-    &__auth {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.14) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.movie-details {
+  padding: 8px 0;
+
+  &__trailer,
+  &__reviews,
+  &__similar {
+    margin-bottom: 2rem;
+
+    h5 {
+      font-size: 1.6rem;
+      margin: 1rem 0 0.8rem;
       font-weight: bold;
-      display: inline !important;
     }
 
-    &__content {
-      display: inline;
-      text-align: justify;
+    p {
+      font-size: 1.4rem;
+      color: #555;
     }
+  }
+
+  &__iframe {
+    display: block;
+    border: none;
+  }
+
+  &__review {
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+
+  &__review-author {
+    font-weight: bold;
+  }
+
+  &__review-content {
+    color: #333;
   }
 }

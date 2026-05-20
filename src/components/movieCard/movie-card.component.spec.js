@@ -3,17 +3,14 @@ import MovieCardComponent from './movie-card.component';
 const mockMovie = {
   id: 1,
   title: 'UnitTest',
-  release_date: '10/10/2010',
-  genres: ['drama', 'comedy'],
   poster_path: '/test.jpg',
   vote_average: 8,
-  overview: 'Test overview',
 };
 
 jest.mock(
   './movie-card.component.html',
   () =>
-    '<div id="card_{{movie.id}}"><span id="title_{{movie.id}}">{{movie.title}}</span><div id="genres_{{movie.id}}"></div></div>',
+    '<div id="card_{{movie.id}}"><span id="title_{{movie.id}}">{{movie.title}}</span><button id="showMoreButton_{{movie.id}}"></button></div>',
 );
 
 describe('MovieCardComponent', () => {
@@ -30,20 +27,21 @@ describe('MovieCardComponent', () => {
     expect(container.querySelector('#title_1').textContent).toBe('UnitTest');
   });
 
-  it('should render genre chips as DOM nodes', () => {
-    const container = document.createElement('div');
-    new MovieCardComponent(mockMovie, container);
-    const chips = container.querySelectorAll('.chip');
-    expect(chips).toHaveLength(2);
-    expect(chips[0].textContent).toBe('drama');
-    expect(chips[1].textContent).toBe('comedy');
-  });
-
   it('should HTML-escape title to prevent injection', () => {
     const container = document.createElement('div');
     const xssMovie = {...mockMovie, title: '<script>alert(1)</script>'};
     new MovieCardComponent(xssMovie, container);
     expect(container.querySelector('#title_1').textContent).toBe('<script>alert(1)</script>');
     expect(container.innerHTML).not.toContain('<script>');
+  });
+
+  it('should pass title to the show-more callback', () => {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+    const callback = jest.fn();
+    new MovieCardComponent(mockMovie, container, callback);
+    document.getElementById('showMoreButton_1').click();
+    expect(callback).toHaveBeenCalledWith(1, 'UnitTest');
+    document.body.removeChild(container);
   });
 });

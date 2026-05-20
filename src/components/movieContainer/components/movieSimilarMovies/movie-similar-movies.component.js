@@ -1,29 +1,22 @@
-import * as similarMoviesTemplate from './movie-similar-movies.component.html';
-
 export default class MovieSimilarMovies {
-  constructor(similarMovies, movieCardId) {
+  constructor(similarMovies) {
     this.similarMovies = similarMovies;
-    this.movieCardId = movieCardId;
-    this.similarMoviesTemplate = similarMoviesTemplate;
-    this.similarMoviesWrapper = document.getElementById(`similar_movies_${this.movieCardId}`);
   }
 
-  mount() {
-    const similarMoviesComponent = document
-      .createRange()
-      .createContextualFragment(this.similarMoviesTemplate.default);
-    this.similarMoviesWrapper.appendChild(similarMoviesComponent);
-    this.afterMount();
-  }
+  render() {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'movie-details__similar';
 
-  afterMount() {
-    this.setSimilarMovies();
-  }
+    const heading = document.createElement('h5');
+    heading.textContent = 'Similar Movies';
+    wrapper.appendChild(heading);
 
-  setSimilarMovies() {
-    this.similarMoviesWrapper.querySelector('#similarMoviesSpan').textContent = this.similarMovies
-      .length
-      ? this.similarMovies.map((similarMovie) => similarMovie.title).join(', ')
-      : 'No similar movies found';
+    const text = document.createElement('p');
+    text.textContent = this.similarMovies.length
+      ? this.similarMovies.map((m) => m.title).join(', ')
+      : 'No similar movies found.';
+    wrapper.appendChild(text);
+
+    return wrapper;
   }
 }

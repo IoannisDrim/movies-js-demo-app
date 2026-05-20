@@ -1,0 +1,31 @@
+<div class="about-page" id="aboutPage">
+  <div class="about-page__content">
+    <h1 class="about-page__title">About MovieRama</h1>
+    <p class="about-page__body">
+      A demo application built entirely with <strong>vanilla JavaScript</strong> — no frameworks, no
+      libraries, no magic. Just ES6+ classes, the native DOM API, and a deliberately structured
+      component architecture to prove that reactivity, routing, and clean UIs do not require a
+      framework to implement well.
+    </p>
+    <h2 class="about-page__subtitle">Architecture patterns</h2>
+    <ul class="about-page__list">
+      <li>Hash-based client-side router with page lifecycle (render / afterRender / unmount)</li>
+      <li>Class-based component model with explicit mount and teardown</li>
+      <li>Frozen singleton pattern for shared services (Modal, Loader)</li>
+      <li>Infinite scroll via throttled CustomEvent dispatch</li>
+      <li>Safe DOM templating — no eval, no innerHTML injection</li>
+      <li>Accessible modal with ARIA attributes, focus trap, and focus restoration</li>
+    </ul>
+    <h2 class="about-page__subtitle">Data</h2>
+    <p class="about-page__body">
+      Movie data is provided by the
+      <a
+        class="about-page__link"
+        href="https://developer.themoviedb.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >TMDB API (The Movie Database)</a
+      >.
+    </p>
+  </div>
+</div>

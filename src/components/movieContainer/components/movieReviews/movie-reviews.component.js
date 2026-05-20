@@ -1,44 +1,39 @@
-import * as reviewTemplate from './movie-reviews.component.html';
-
 export default class MovieReviews {
-  constructor(reviews, movieCardId) {
+  constructor(reviews) {
     this.reviews = reviews;
-    this.movieCardId = movieCardId;
-    this.reviewTemplate = reviewTemplate;
-    this.reviewsWrapper = document.getElementById(`reviews_${this.movieCardId}`);
   }
 
-  mount() {
-    const reviewComponent = document
-      .createRange()
-      .createContextualFragment(this.reviewTemplate.default);
-    this.reviewsWrapper.appendChild(reviewComponent);
-    this.afterMount();
-  }
+  render() {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'movie-details__reviews';
 
-  afterMount() {
-    this.setReviews();
-  }
+    const heading = document.createElement('h5');
+    heading.textContent = 'Reviews';
+    wrapper.appendChild(heading);
 
-  setReviews() {
-    if (this.reviews?.length) {
+    if (this.reviews.length) {
       this.reviews.forEach((review) => {
-        const reviewSection = document.createElement('div');
-        const reviewAuthorSpan = document.createElement('span');
-        const reviewBodySpan = document.createElement('span');
+        const item = document.createElement('div');
+        item.className = 'movie-details__review';
 
-        reviewSection.className = 'scroll-container__review-div';
-        reviewAuthorSpan.textContent = `${review.author} : `;
-        reviewAuthorSpan.className = 'scroll-container__review-div__auth';
-        reviewBodySpan.textContent = `${review.content}`;
-        reviewBodySpan.className = 'scroll-container__review-div__content';
+        const author = document.createElement('span');
+        author.className = 'movie-details__review-author';
+        author.textContent = `${review.author}: `;
 
-        reviewSection.appendChild(reviewAuthorSpan);
-        reviewSection.appendChild(reviewBodySpan);
-        this.reviewsWrapper.querySelector('#reviewsDiv').appendChild(reviewSection);
+        const content = document.createElement('span');
+        content.className = 'movie-details__review-content';
+        content.textContent = review.content;
+
+        item.appendChild(author);
+        item.appendChild(content);
+        wrapper.appendChild(item);
       });
     } else {
-      this.reviewsWrapper.querySelector('#reviewsNotFound').textContent = 'No reviews found';
+      const msg = document.createElement('p');
+      msg.textContent = 'No reviews found.';
+      wrapper.appendChild(msg);
     }
+
+    return wrapper;
   }
 }

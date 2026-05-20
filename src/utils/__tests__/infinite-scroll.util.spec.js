@@ -13,15 +13,15 @@ describe('InfiniteScrollUtil', () => {
   it('should fire event when scrolling near to the end of scrolling container', () => {
     const scrollContainer = renderScrollContainer();
 
-    jest.spyOn(scrollContainer, 'clientHeight', 'get').mockReturnValue(100);
-    jest.spyOn(scrollContainer, 'scrollHeight', 'get').mockReturnValue(1000);
+    jest.spyOn(scrollContainer, 'clientHeight', 'get').mockReturnValue(200);
+    jest.spyOn(scrollContainer, 'scrollHeight', 'get').mockReturnValue(3000);
 
     const fetchScrollContainerData = jest.fn();
     document.addEventListener(`fetchScrollContainerData_${parentId}`, fetchScrollContainerData);
 
     new InfiniteScrollUtil(parentId, scrollContainer);
 
-    scrollContainer.scrollTop = 900;
+    scrollContainer.scrollTop = 2500; // 2500 + 200 = 2700 >= 3000 - 400 = 2600 → fires
     scrollContainer.dispatchEvent(new Event('scroll'));
 
     expect(fetchScrollContainerData).toHaveBeenCalled();
@@ -32,15 +32,15 @@ describe('InfiniteScrollUtil', () => {
   it('should not fire event when scrolling far from the end of scrolling container', () => {
     const scrollContainer = renderScrollContainer();
 
-    jest.spyOn(scrollContainer, 'clientHeight', 'get').mockReturnValue(100);
-    jest.spyOn(scrollContainer, 'scrollHeight', 'get').mockReturnValue(1000);
+    jest.spyOn(scrollContainer, 'clientHeight', 'get').mockReturnValue(200);
+    jest.spyOn(scrollContainer, 'scrollHeight', 'get').mockReturnValue(3000);
 
     const fetchScrollContainerData = jest.fn();
     document.addEventListener(`fetchScrollContainerData_${parentId}`, fetchScrollContainerData);
 
     new InfiniteScrollUtil(parentId, scrollContainer);
 
-    scrollContainer.scrollTop = 10;
+    scrollContainer.scrollTop = 100; // 100 + 200 = 300 < 3000 - 400 = 2600 → no fire
     scrollContainer.dispatchEvent(new Event('scroll'));
 
     expect(fetchScrollContainerData).not.toHaveBeenCalled();

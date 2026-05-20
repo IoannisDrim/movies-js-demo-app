@@ -12,6 +12,7 @@ export default class InTheatersPage {
     this.inTheatersTemplate = inTheatersTemplate;
     this.movieServicePage = 1;
     this.inTheatersMovies = [];
+    this.isFetching = false;
     this.fetchScrollContainerDataListener = this.scrollListener.bind(this);
     this.getInTheaterMovies();
     this.publicAccesibleId = 'inTheatersPage';
@@ -41,9 +42,15 @@ export default class InTheatersPage {
     this.moviesContainer.afterRender();
   }
 
-  /* Fetches movies from server and updates component's data */
   getInTheaterMovies() {
-    this.loader.showLoader();
+    this.isFetching = true;
+    const isFirstLoad = this.movieServicePage === 1;
+
+    if (isFirstLoad) {
+      this.loader.showLoader();
+    } else {
+      this.moviesContainer.showSkeletons();
+    }
 
     this.movieService
       .getNowPlaying(this.movieServicePage)
@@ -60,16 +67,21 @@ export default class InTheatersPage {
         );
       })
       .finally(() => {
-        this.loader.hideLoader();
+        this.isFetching = false;
+        if (isFirstLoad) {
+          this.loader.hideLoader();
+        } else {
+          this.moviesContainer.hideSkeletons();
+        }
       });
   }
 
   scrollListener() {
+    if (this.isFetching) return;
     this.movieServicePage += 1;
     this.getInTheaterMovies();
   }
 
-  /* Listens infiniteScroll util and fetches more data if triggered */
   addFetchScrollContainerDataListener() {
     document.addEventListener(
       'fetchScrollContainerData_inTheatersPage',

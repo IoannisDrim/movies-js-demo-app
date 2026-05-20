@@ -1,32 +1,33 @@
-import * as trailerTemplate from './movie-trailer.component.html';
-
 export default class MovieTrailer {
-  constructor(trailer, movieCardId) {
-    this.trailer = trailer;
-    this.movieCardId = movieCardId;
-    this.trailerTemplate = trailerTemplate;
-    this.trailerWrapper = document.getElementById(`trailer_${this.movieCardId}`);
+  constructor(trailerKey) {
+    this.trailerKey = trailerKey;
     this.youtubeURL = 'https://www.youtube.com/embed/';
   }
 
-  mount() {
-    const trailerComponent = document
-      .createRange()
-      .createContextualFragment(this.trailerTemplate.default);
-    this.trailerWrapper.appendChild(trailerComponent);
-    this.afterMount();
-  }
+  render() {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'movie-details__trailer';
 
-  afterMount() {
-    this.setTrailer();
-  }
+    const heading = document.createElement('h5');
+    heading.textContent = 'Trailer';
+    wrapper.appendChild(heading);
 
-  setTrailer() {
-    if (this.trailer) {
-      this.trailerWrapper.querySelector('iframe').src = `${this.youtubeURL}${this.trailer}`;
+    if (this.trailerKey) {
+      const iframe = document.createElement('iframe');
+      iframe.className = 'movie-details__iframe';
+      iframe.src = `${this.youtubeURL}${this.trailerKey}`;
+      iframe.width = '100%';
+      iframe.height = '315';
+      iframe.allow = 'autoplay; encrypted-media';
+      iframe.allowFullscreen = true;
+      iframe.title = 'Movie Trailer';
+      wrapper.appendChild(iframe);
     } else {
-      this.trailerWrapper.querySelector('#trailerNotFound').textContent = 'No trailer found.';
-      this.trailerWrapper.querySelector('iframe').setAttribute('class', 'hidden');
+      const msg = document.createElement('p');
+      msg.textContent = 'No trailer found.';
+      wrapper.appendChild(msg);
     }
+
+    return wrapper;
   }
 }

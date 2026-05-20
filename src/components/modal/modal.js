@@ -22,11 +22,22 @@ class Modal {
     document.getElementById('modal').classList.replace('modal--visible', 'hidden');
   }
 
-  open(title, body) {
+  open(title, content) {
+    const body = document.getElementById('modalBody');
+    body.replaceChildren();
+
+    if (typeof content === 'string') {
+      const p = document.createElement('p');
+      p.className = 'modal__container__body__msg';
+      p.textContent = content;
+      body.appendChild(p);
+    } else {
+      body.appendChild(content);
+    }
+
     previousFocus = document.activeElement;
-    document.getElementById('modal').classList.replace('hidden', 'modal--visible');
     document.getElementById('modalTitle').textContent = title;
-    document.getElementById('modalMsg').textContent = body;
+    document.getElementById('modal').classList.replace('hidden', 'modal--visible');
     document.getElementById('modalCloseBtn').focus();
     trapFocusHandler = this._trapFocus.bind(this);
     document.addEventListener('keydown', trapFocusHandler);

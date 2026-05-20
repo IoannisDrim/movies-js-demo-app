@@ -27,22 +27,14 @@ main {
 footer {
   font-size: 1.5rem;
   padding: 1rem 2rem;
-  background-color: #00cca7; //#206040;
+  background-color: #081c24;
+  border-top: 1px solid #0d3344;
   flex: none;
-  color: #081c24;
+  color: #00cca7;
 }
 
 .hidden {
   display: none;
-}
-
-.button {
-  border: none;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
 }
 
 .active-header-link {
@@ -81,80 +73,4 @@ footer {
 .card {
   content-visibility: auto;
   contain-intrinsic-size: 300px 500px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease;
-  position: relative;
-
-  &__image {
-    width: 25rem;
-  }
-
-  &__text {
-    padding: 2px 16px;
-  }
-
-  &__body {
-    padding: 2px 16px;
-  }
-
-  &__title {
-    margin: 0;
-    font-size: 16px;
-    font-weight: bold;
-  }
-
-  &__subtitle {
-    font-size: 14px;
-    font-weight: normal;
-  }
-
-  &__overview {
-    font-size: 1.4rem;
-    font-style: italic;
-    //white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    //min-height: 40px;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-
-    &--expanded {
-      -webkit-line-clamp: unset;
-    }
-  }
-
-  &__footer {
-    padding: 0;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
-    &--expanded {
-      position: relative;
-    }
-  }
-}
-
-.progress {
-  margin: 1rem 0;
-
-  &__bar {
-    background-color: #ffd700;
-    color: #000;
-    font-size: 1.4rem;
-    font-weight: bold;
-    text-align: left;
-    padding-left: 1rem;
-  }
-}
-
-.chip {
-  display: inline;
-  width: fit-content;
-  height: fit-content;
-  padding: 0 10px;
-  line-height: 16px;
-  border-radius: 25px;
-  background-color: #cdcdcd;
 }

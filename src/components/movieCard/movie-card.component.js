@@ -13,36 +13,23 @@ export default class MovieCardComponent {
 
   render() {
     const fragment = document.createRange().createContextualFragment(this.getSafeHtml());
-    this.setGenres(fragment);
     this.setPosterFallback(fragment);
     this.movieCardContainer.appendChild(fragment);
     this.addShowMoreHandler(this.movie.id);
   }
 
   getSafeHtml() {
-    const {id, title, poster_path, vote_average, overview} = this.movie;
+    const {id, title, poster_path, vote_average} = this.movie;
     const tokens = {
       'movie.id': id,
       'movie.title': escapeHtml(title),
       'movie.poster_path': escapeHtml(poster_path),
       'movie.vote_average': vote_average,
-      'movie.overview': escapeHtml(overview),
     };
     return this.movieCardTemplate.default.replace(
-      /\{\{([\w.]+)\}\}/g,
+      /\{\{\s*([\w.]+)\s*\}\}/g,
       (_, key) => tokens[key] ?? '',
     );
-  }
-
-  setGenres(fragment) {
-    const container = fragment.querySelector(`#genres_${this.movie.id}`);
-    if (!container) return;
-    this.movie.genres.forEach((name) => {
-      const chip = document.createElement('div');
-      chip.className = 'chip';
-      chip.textContent = name;
-      container.appendChild(chip);
-    });
   }
 
   setPosterFallback(fragment) {
@@ -58,7 +45,7 @@ export default class MovieCardComponent {
     const button = document.getElementById(`showMoreButton_${cardId}`);
     if (!button) return;
     button.onclick = () => {
-      this.onShowMoreClicked(cardId, button);
+      this.onShowMoreClicked(cardId, this.movie.title);
     };
   }
 }

@@ -31,12 +31,10 @@ describe('NavigationBarComponent', () => {
     const navigationBarComponent = new NavigationBarComponent(router);
     document.body.appendChild(navigationBarComponent.render());
     navigationBarComponent.afterRender();
-    navigationBarComponent.router.activeState = 'search-movies';
+    navigationBarComponent.router.activeState = 'about';
     window.dispatchEvent(new Event('hashchange'));
 
-    expect(document.querySelector('.active-header-link').getAttribute('href')).toBe(
-      '#search-movies',
-    );
+    expect(document.querySelector('.active-header-link').getAttribute('href')).toBe('#about');
     navigationBarComponent.unmount();
   });
 });

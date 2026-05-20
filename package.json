@@ -1,10 +1,11 @@
 {
   "name": "movie-rama",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "build": "webpack --config=webpack/webpack.prod.js",
     "commitlint": "commitlint --config commitlint.config.mjs",
+    "format": "prettier --write \"src/**/*.{js,html,scss}\"",
     "lint": "eslint src",
     "prepare": "husky",
     "start": "webpack serve --config=webpack/webpack.dev.js",
@@ -28,7 +29,6 @@
     "jest-css-modules": "2.1.0",
     "jest-environment-jsdom": "29.7.0",
     "jest-html-loader": "1.0.0",
-    "jest-transformer-svg": "2.0.2",
     "lint-staged": "15.2.10",
     "mini-css-extract-plugin": "2.9.1",
     "prettier": "3.3.3",
