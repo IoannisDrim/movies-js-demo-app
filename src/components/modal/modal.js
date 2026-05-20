@@ -2,6 +2,8 @@ import * as modalTemplate from './modal.html';
 import './modal.scss';
 
 let instance;
+let previousFocus = null;
+let trapFocusHandler = null;
 
 class Modal {
   constructor() {
@@ -21,13 +23,49 @@ class Modal {
   }
 
   open(title, body) {
+    previousFocus = document.activeElement;
     document.getElementById('modal').classList.replace('hidden', 'modal--visible');
     document.getElementById('modalTitle').textContent = title;
     document.getElementById('modalMsg').textContent = body;
+    document.getElementById('modalCloseBtn').focus();
+    trapFocusHandler = this._trapFocus.bind(this);
+    document.addEventListener('keydown', trapFocusHandler);
   }
 
   close() {
     document.getElementById('modal').classList.replace('modal--visible', 'hidden');
+    document.removeEventListener('keydown', trapFocusHandler);
+    trapFocusHandler = null;
+    previousFocus?.focus();
+    previousFocus = null;
+  }
+
+  _trapFocus(e) {
+    const modal = document.getElementById('modal');
+    const focusable = Array.from(
+      modal.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])'),
+    ).filter((el) => !el.disabled);
+
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.key === 'Tab') {
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    } else if (e.key === 'Escape') {
+      this.close();
+    }
   }
 
   createModalComponent() {

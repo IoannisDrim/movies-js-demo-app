@@ -83,31 +83,27 @@ export default class MovieContainerComponent {
     this.toggleCardExpansion(movieCardId);
   }
 
-  /* Waits all calls to be completed in order to render data through calling all relative functions */
   async loadAdditionalMovieData(movieCardId) {
     this.setShowMoreLoading(movieCardId, true);
-    const fetchExtraInfoRequests = [
-      await this.movieService.getMovieTrailer(movieCardId).catch(() => false),
-      await this.movieService.getMovieReviews(movieCardId).catch(() => false),
-      await this.movieService.getSimilarMovies(movieCardId).catch(() => false),
-    ];
-    Promise.all(fetchExtraInfoRequests)
-      .then((values) => {
-        this.setTrailerTemplate(values[0], movieCardId);
-        this.setReviewsTemplate(values[1], movieCardId);
-        this.setSimilarMoviesTemplate(values[2], movieCardId);
-        this.toggleCardExpansion(movieCardId);
-        localStorage.setItem(`movieDetails_${movieCardId}`, 'true');
-      })
-      .catch(() => {
-        this.modal.open(
-          'Attention',
-          'An error occurred, we could not fetch movie details. Please try again later',
-        );
-      })
-      .finally(() => {
-        this.setShowMoreLoading(movieCardId, false);
-      });
+    try {
+      const [trailer, reviews, similar] = await Promise.all([
+        this.movieService.getMovieTrailer(movieCardId).catch(() => null),
+        this.movieService.getMovieReviews(movieCardId).catch(() => null),
+        this.movieService.getSimilarMovies(movieCardId).catch(() => null),
+      ]);
+      this.setTrailerTemplate(trailer, movieCardId);
+      this.setReviewsTemplate(reviews, movieCardId);
+      this.setSimilarMoviesTemplate(similar, movieCardId);
+      this.toggleCardExpansion(movieCardId);
+      localStorage.setItem(`movieDetails_${movieCardId}`, 'true');
+    } catch {
+      this.modal.open(
+        'Attention',
+        'An error occurred, we could not fetch movie details. Please try again later',
+      );
+    } finally {
+      this.setShowMoreLoading(movieCardId, false);
+    }
   }
 
   setShowMoreLoading(movieCardId, isLoading) {
@@ -117,16 +113,16 @@ export default class MovieContainerComponent {
     showMoreButton.style.visibility = isLoading ? 'hidden' : 'visible';
   }
 
-  setTrailerTemplate(trailers, movieCardId) {
-    new MovieTrailer(trailers.results[0].key, movieCardId).mount();
+  setTrailerTemplate(trailer, movieCardId) {
+    new MovieTrailer(trailer?.results?.[0]?.key ?? null, movieCardId).mount();
   }
 
   setReviewsTemplate(reviews, movieCardId) {
-    new MovieReviews(reviews.results, movieCardId).mount();
+    new MovieReviews(reviews?.results ?? [], movieCardId).mount();
   }
 
   setSimilarMoviesTemplate(similarMovies, movieCardId) {
-    new MovieSimilarMovies(similarMovies.results, movieCardId).mount();
+    new MovieSimilarMovies(similarMovies?.results ?? [], movieCardId).mount();
   }
 
   /* Handles the animation of expanding and collapsing component */

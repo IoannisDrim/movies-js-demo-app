@@ -25,7 +25,7 @@ export default class MovieTrailer {
     if (this.trailer) {
       this.trailerWrapper.querySelector('iframe').src = `${this.youtubeURL}${this.trailer}`;
     } else {
-      this.trailerWrapper.getElementById('trailerNotFound').textContent = 'No trailer found.';
+      this.trailerWrapper.querySelector('#trailerNotFound').textContent = 'No trailer found.';
       this.trailerWrapper.querySelector('iframe').setAttribute('class', 'hidden');
     }
   }

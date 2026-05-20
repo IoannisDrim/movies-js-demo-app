@@ -45,5 +45,6 @@ export default class Router {
   loadPageForRoute(routeName) {
     const page = this.pages[routeName];
     page.init();
+    document.querySelector('main')?.focus();
   }
 }

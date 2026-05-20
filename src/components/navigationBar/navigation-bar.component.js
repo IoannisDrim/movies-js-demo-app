@@ -26,7 +26,7 @@ export default class NavigationBarComponent {
   }
 
   initiateLocationChangedListener() {
-    addEventListener('hashchange', this.hashChangedListener.bind(this));
+    addEventListener('hashchange', this.hashChangedListener);
   }
 
   onHashChanged() {

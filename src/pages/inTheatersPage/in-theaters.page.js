@@ -73,7 +73,7 @@ export default class InTheatersPage {
   addFetchScrollContainerDataListener() {
     document.addEventListener(
       'fetchScrollContainerData_inTheatersPage',
-      this.fetchScrollContainerDataListener.bind(this),
+      this.fetchScrollContainerDataListener,
       false,
     );
   }

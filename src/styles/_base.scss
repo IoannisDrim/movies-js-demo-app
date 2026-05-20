@@ -50,9 +50,39 @@ footer {
   color: #ace600 !important;
 }
 
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: #00cca7;
+  color: #081c24;
+  padding: 0.5rem 1rem;
+  font-size: 1.4rem;
+  text-decoration: none;
+  z-index: 1000;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .card {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 500px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+  transition: box-shadow 0.3s ease;
   position: relative;
 
   &__image {
